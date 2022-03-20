@@ -13,9 +13,10 @@
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
-            "externalConsole": true,
+            "externalConsole": false,
             "MIMode": "lldb",
-            "preLaunchTask": "C/C++: clang++ build active file"
+            "preLaunchTask": "C/C++: clang++ build active file",
+            "miDebuggerPath": "/Users/kristina/.vscode/extensions/ms-vscode.cpptools-1.8.4/debugAdapters/lldb-mi/bin/lldb-mi"
         }
     ]
 }
