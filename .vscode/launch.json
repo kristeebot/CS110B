@@ -16,7 +16,8 @@
             "externalConsole": false,
             "MIMode": "lldb",
             "preLaunchTask": "C/C++: clang++ build active file",
-            "miDebuggerPath": "/Users/kristina/.vscode/extensions/ms-vscode.cpptools-1.8.4/debugAdapters/lldb-mi/bin/lldb-mi"
+            // Had to download this after a lot of googling:
+            "miDebuggerPath": "/Users/kristina/Downloads/debugAdapters/lldb/bin/lldb-mi"
         }
     ]
 }

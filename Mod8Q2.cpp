@@ -4,27 +4,32 @@
 //This program determines if a C-string begins with a specified prefix
 
 #include <iostream>
-// #include <cstdlib>
-// #include <fstream>
-// #include <string>
 using namespace std;
 
-/*Write a function to determine if a C-string begins with a specified prefix.  
-It should have the following signature:
- bool starts(char *str, char *prefix) 
-It should return true if str begins with prefix, false if not.  
-It should return false if prefix is longer than str. 
-See the table below for some examples of what your function should return for various cases:*/
 
 bool starts(const char *str, const char *prefix)
 {
-    return false;
+    int prefixLen = strlen(prefix);
+    if (strlen(str) < prefixLen) 
+    {
+        return false;
+    }
+    for (int i = 0; i < prefixLen; ++i)
+    {
+        if (*(str +i) != *(prefix +i))
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 int main ()
 {
-    cout << "foobar, foo " << starts("foobar", "foo") << " (should be true)" << endl;
-    cout << "fewbar, fu " << starts("fewbar", "fu" ) << " (should be true)" << endl;
-    cout << "fo, foo " << starts("fo" , "foo") << " (should be false)" << endl;
+    assert(starts("airplanes", "air"));
+    assert(!starts("airplanes", "abc"));
+    assert(!starts("airplanes", "plane"));
+    assert(starts("airplanes", "airplane"));
+    assert(!starts("air", "airplane"));
     return 0;
 }
