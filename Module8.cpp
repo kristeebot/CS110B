@@ -14,6 +14,15 @@ For example, if s is “Giants” and target is ‘a’ the function returns 2. 
 
 int lastIndexOf(char *s, char target)
 {
+    int lastIndex = strlen(s) - 1;
+    while (lastIndex--)
+    {
+        char *end = (s + lastIndex);
+        if (*end == target)
+        {
+            return lastIndex;
+        }
+    }
     return -1;
 }
 
@@ -23,7 +32,17 @@ To be clear, just printing out the string in reverse order is insufficient to re
 you must change the actual string to be in reverse order.*/
 
 void reverse(char *s)
-{
+{ //starting from opposite ends of the string stepping through to the middle swapping the characters as we go.
+    char* tail = s+ (strlen(s)-1);
+    while (s < tail)
+    {
+        char c = *s;
+        char t = *tail;
+        *s = t;
+        *tail = c;
+        tail--;
+        s++;
+    }
 }
 
 /*3.  This function finds all instances of the char ‘target’ in the string and replaces them with ‘replacementChar’.
@@ -34,7 +53,17 @@ the function should change s to “Go Giants” and return 2. */
 
 int replace(char *s, char target, char replacementChar)
 {
-    return 0;
+    int replacementCount =0;
+    while (*s)
+    {
+        if (*s == target)
+        {
+            *s = replacementChar;
+            replacementCount++;
+        }
+        s++;
+    }
+    return replacementCount;
 }
 
 /*4.  This function returns the index in string s where the substring can first be found.
@@ -55,7 +84,10 @@ Note: do not get confused by white space characters. They should not get any spe
 
 bool isPalindrome(char *s)
 {
-    return false;
+    char candidate[MAX_INPUT];
+    strncpy(candidate, s, MAX_INPUT);
+    reverse (candidate);
+    return strcmp(candidate, s) ==0;
 }
 
 /*6. Extra Credit, up to 10 extra points.
@@ -89,18 +121,20 @@ at minimum with the examples listed above.
 This means that you will need to write a simple main() function to call all of your functions and show that they work.
  */
 
+static const int INPUT_MAX = 128;
+
 int main()
 {
     int lastIndexValue = lastIndexOf("Giants", 'a');
     cout << "lastIndexOf (\"Giants\", 'a') " << lastIndexValue << endl;
 
-    char *stringToReverse = "flower";
+    char stringToReverse[INPUT_MAX] = "flower";
     reverse(stringToReverse);
     cout << stringToReverse << endl;
 
-    char *replaceInput = "go giants";
+    char replaceInput[INPUT_MAX] = "go giants";
     int replacementCount = replace(replaceInput, 'g', 'G');
-    cout << "replacementCount: " << replacementCount << replaceInput << endl;
+    cout << "replacementCount: " << replacementCount << " " << replaceInput << endl;
 
     int foundIndex = findSubstring("Skyscraper", "ysc");
     cout << "findSubstring(\"Skyscraper\", \"ysc\") returned: " << foundIndex << endl;
@@ -108,7 +142,7 @@ int main()
     cout << "abba is a palindrome: " << isPalindrome("abba") << endl;
     cout << "abc is a palindrome: " << isPalindrome("abc") << endl;
 
-    char* wordsToReverse = "Kristina loves Gavin";
+    char wordsToReverse[INPUT_MAX] = "Kristina loves Gavin";
     reverseWords(wordsToReverse);
     cout << wordsToReverse << endl;
 
