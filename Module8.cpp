@@ -126,10 +126,14 @@ int main()
 
     cout << "abba is a palindrome: " << isPalindrome("abba") << endl;
     cout << "abc is a palindrome: " << isPalindrome("abc") << endl;
-
-    char wordsToReverse[INPUT_MAX] = "Kristina loves Gavin";
-    reverseWords(wordsToReverse);
-    cout << wordsToReverse << endl;
-
     return 0;
 }
+/*SAMPLE OUTPUT
+lastIndexOf ("Giants", 'a') 2
+rewolf
+replacementCount: 2 Go Giants
+findSubstring("Skyscraper", "ysc") returned: 2
+abba is a palindrome: 1
+abc is a palindrome: 0
+Process exited with status 0
+*/
