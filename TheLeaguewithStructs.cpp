@@ -1,7 +1,7 @@
 // KristinaHelwing
 // CS110B
-// 040522
-// This program tracks burrito sales using structs
+// 040922
+// This program tracks league scores using structs
 
 #include <iostream>
 #include <cstdlib>
