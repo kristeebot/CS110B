@@ -33,7 +33,6 @@ int main()
     // Rewind the pointers to the start of the arrays
     name = names;
     price = prices;
-    
     for (int i = 0; i < NUM_TYPES; i++)
     {
         cout << "Dish: " << *(name + i) << endl <<

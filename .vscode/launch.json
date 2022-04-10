@@ -15,7 +15,9 @@
             "environment": [],
             "externalConsole": true,
             "MIMode": "lldb",
-            "preLaunchTask": "C/C++: clang++ build active file"
+            "preLaunchTask": "C/C++: clang++ build active file",
+            // Had to download this after a lot of googling:
+            "miDebuggerPath": "/Users/kristina/Downloads/debugAdapters/lldb/bin/lldb-mi"
         }
     ]
 }
