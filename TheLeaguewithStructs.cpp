@@ -23,10 +23,10 @@ You must ask the user how many teams are in the league to determine how big this
 void initializeData(WinRecord* standings, int size)
 void sortData(WinRecord* standings, int size)
 void displayData(WinRecord* standings, int size)
-4.  Note that the name field of each WinRecord struct is just a char* which you need to use to store a C-String. 
-For this assignment, you must use C-strings, not C++ string objects.  
-Unlike a C++ string object, the memory to store the actual character array 
-for the C-String is not allocated for you automatically!  
+4.  Note that the name field of each WinRecord struct is just a char* which you need to use to store a C-String.
+For this assignment, you must use C-strings, not C++ string objects.
+Unlike a C++ string object, the memory to store the actual character array
+for the C-String is not allocated for you automatically!
 I encourage you to develop a function to do this on your own, but I have provided the getLine() function
 (Links to an external site.)getLine.cpp (Links to an external site.) to use if you wish.  Note that this function returns a line of text from the keyboard contained in a dynamically allocated array.  You will thus need to deallocate this memory using delete [] when you are done using any arrays you allocated using this function.  Towards the end of main() is a reasonable place to do this allocation.  Note that this is in addition to deallocating the array of WinRecord structs discussed in step 2 above!
 
@@ -80,6 +80,21 @@ void initializeData(WinRecord *standings, int size)
 }
 void sortData(WinRecord *standings, int size)
 {
+    int minIndex, minValue;
+    for (int start = 0; start < (size - 1); ++start)
+    {
+        minIndex = start;
+        minValue = standings[start].wins;
+        for (int index = start + 1; index < size; index++)
+        {
+            if (standings[index].wins >= minValue)
+            {
+                minValue = standings[index].wins;
+                minIndex = index;
+            }
+        }
+        swap(standings[minIndex], standings[start]);
+    }
 }
 void displayData(WinRecord *standings, int size)
 {
@@ -88,6 +103,15 @@ void displayData(WinRecord *standings, int size)
     {
         cout << standings[i].name << ": " << standings[i].wins << endl;
     }
+}
+void deallocateRecords(WinRecord *standings, int size)
+{
+    for (int i = 0; i < size; ++i)
+    {
+        delete[] standings[i].name;
+        standings[i].name = NULL;
+    }
+    delete[] standings;
 }
 
 int main()
@@ -99,6 +123,24 @@ int main()
     initializeData(winRecords, teamCount);
     sortData(winRecords, teamCount);
     displayData(winRecords, teamCount);
-    delete[] winRecords;
+    deallocateRecords(winRecords, teamCount);
     return 0;
 }
+
+/*SAMPLE OUTPUT
+Giants
+Enter the wins for team #1
+5
+Enter team #2
+Dodgers
+Enter the wins for team #2
+50
+Enter team #3
+Blue Jays
+Enter the wins for team #3
+60
+League Standings: 
+Blue Jays: 60
+Dodgers: 50
+Giants: 5
+*/
