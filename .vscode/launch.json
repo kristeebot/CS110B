@@ -18,7 +18,10 @@
             "MIMode": "lldb",
             "preLaunchTask": "C/C++: clang++ build active file",
             // Had to download this after a lot of googling:
-            "miDebuggerPath": "/Users/kristina/Downloads/debugAdapters/lldb/bin/lldb-mi"
+            // "miDebuggerPath": "/Users/kristinahelwing/.vscode/extensions/ms-vscode.cpptools-1.9.7/debugAdapters/lldb-mi/bin/lldb-mi"
+            "miDebuggerPath": "${workspaceFolder}/lldb-mi"
+            //export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+
         }
     ]
 }
